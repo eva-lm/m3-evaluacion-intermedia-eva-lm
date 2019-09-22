@@ -1,7 +1,6 @@
 import React from "react";
 import "../stylesheets/App.css";
 import PokeList from "./PokeList";
-import Pokemon from "./Pokemon";
 import { pokemonsData } from "../data/data";
 
 class App extends React.Component {
@@ -9,23 +8,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       pokemons: pokemonsData,
-      favorites: "red"
+      favorites: []
     };
-    console.log(pokemonsData);
+    console.log(this.state.pokemons);
+
+    this.handleFavorite = this.handleFavorite.bind(this);
   }
-  handleFavorites(event) {
-    const { value } = event.target;
-    this.setState(prevState => ({
-      favorites: prevState.favorites === "pokemonItem" ? "red" : "pokemonItem"
-    }));
-    console.log(value);
+  handleFavorite(id) {
+    console.log("wiii--->", id);
   }
+
   render() {
     return (
       <div className="App">
         <h1 className="Title">Mi lista de pokemon</h1>
-        <PokeList pokemons={this.state.pokemons} />
-        <Pokemon onFavoriteChanges={this.handleFavorites} />
+        <PokeList
+          pokemons={this.state.pokemons}
+          handleFavorite={this.handleFavorite}
+        />
       </div>
     );
   }
