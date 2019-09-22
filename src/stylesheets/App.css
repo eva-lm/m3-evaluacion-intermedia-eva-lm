@@ -20,8 +20,9 @@
   width: 150px;
   margin: 10px;
 }
-.red {
-  background-color: red;
+.favorite {
+  background-color: rgb(247, 139, 139);
+  border-radius: 20%;
 }
 
 .pokemonTypes{

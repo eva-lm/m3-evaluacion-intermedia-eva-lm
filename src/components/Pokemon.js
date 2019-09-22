@@ -1,32 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class Pokemon extends React.Component {
-  handleChangeButton(props) {
-    props.handleFavorite(props.item.id);
-  }
+const Pokemon = props => {
+  const handleChangeButton = () => {
+    props.handleFavorite(props.pokemon.id);
+  };
 
-  render() {
-    const { name, image } = this.props;
-    //console.log(this.props);
-
-    return (
-      <div className="pokemonCard">
-        <label>
-          <input
-            onClick={this.handleChangeButton}
-            type="button"
-            value="&hearts;"
-            name="favorite"
-            id="favorite"
-          ></input>
-        </label>
-        <h2 className="PokemonTitle">{name}</h2>
-        <img className="pokemonImage" src={image} alt={name} title={image} />
+  return (
+    <div>
+      <label>
+        <input
+          className={props.pokemon.favorite === true ? "favorite" : ""}
+          onClick={handleChangeButton}
+          type="button"
+          value="&hearts;"
+          name="favorite"
+          id="favorite"
+        ></input>
+      </label>
+      <h2 className="PokemonTitle">{props.pokemon.name}</h2>
+      <div className={props.pokemon.favorite === true ? "favorite" : ""}>
+        <img
+          className="pokemonImage"
+          src={props.pokemon.url}
+          alt={props.pokemon.name}
+          title={props.pokemon.name}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Pokemon.propTypes = {
   name: PropTypes.string
